@@ -1,6 +1,11 @@
 import faker from "faker";
+import {Mappable} from './CustomMap';
 
-export class Company {
+
+// We import mappable to the complany class page
+// this means that when errors show when we add an instance
+// of class to addMarker on index.ts the error apppears here
+export class Company implements Mappable {
   companyName: string;
   catchPhrase: string;
   location: {
@@ -16,4 +21,12 @@ export class Company {
       lng: parseFloat(faker.address.longitude()),
     };
   }
+
+  markerContent(){
+    return `
+    <div>
+    <h1>Company Name ${this.companyName}</h1>
+    <h3>Catchphrase ${this.catchPhrase}</h3>
+    </div>`
+ }
 }
